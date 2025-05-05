@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Para Ti, Mi Amor</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1);
+      background-size: 400% 400%;
+      animation: gradient 10s ease infinite;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      max-width: 600px;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .heart {
+      font-size: 2em;
+      color: #e91e63;
+      animation: pulse 1.5s infinite;
+    }
+
+    .foto {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin: 20px 0;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      border: 4px solid #e91e63;
+    }
+
+    h1 {
+      color: #e91e63;
+      font-size: 2.2em;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.1em;
+      color: #444;
+      line-height: 1.6;
+    }
+
+    button {
+      background-color: #e91e63;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 12px;
+      font-size: 1em;
+      margin-top: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #d81b60;
+    }
+
+    button + button {
+      margin-left: 10px;
+    }
+
+    #frase {
+      margin-top: 15px;
+      color: #d81b60;
+      font-weight: bold;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    .heart-float {
+      position: fixed;
+      top: -50px;
+      font-size: 24px;
+      color: #e91e63;
+      animation: flotar 8s linear infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes flotar {
+      0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="heart">❤️</div>
+    <img src="foto.jpg" alt="Mi amor" class="foto" />
+    <h1>Para Ti, Mi Amor</h1>
+    <p>
+      Cada día contigo es un regalo que agradezco con el alma.<br>
+      Tu risa, tu ternura y tu luz me hacen el ser más feliz del mundo.<br><br>
+      Te amo más de lo que las palabras pueden expresar. ❤️
+    </p>
+
+    <button onclick="mostrarFrase()">Haz clic para una sorpresa 💘</button>
+    <p id="frase"></p>
+
+    <div style="margin-top: 20px;">
+      <button onclick="document.getElementById('musicaFondo').play()">▶️ Reproducir música</button>
+      <button onclick="document.getElementById('musicaFondo').pause()">⏸️ Pausar música</button>
+    </div>
+  </div>
+
+  <audio id="musicaFondo" loop>
+    <source src="musica.mp3" type="audio/mpeg">
+    Tu navegador no soporta la reproducción de audio.
+  </audio>
+
+  <script>
+    function mostrarFrase() {
+      const frases = [
+        "Eres el sueño que nunca quiero despertar 🌙",
+        "Contigo todo tiene más sentido ❤️",
+        "Tu amor ilumina mis días ✨",
+ "Las promesas nunca se rompe✨💐",
+        "Gracias por ser tú, simplemente tú 💐",
+        "Te elijo hoy, mañana y siempre 💘"
+      ];
+      const frase = frases[Math.floor(Math.random() * frases.length)];
+      document.getElementById("frase").innerText = frase;
+    }
+
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.classList.add("heart-float");
+      heart.innerText = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 8000);
+    }, 400);
+  </script>
+</body>
+</html>
